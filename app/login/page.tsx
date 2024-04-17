@@ -4,20 +4,21 @@ import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/comp
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/components/ui/use-toast';
 import { db } from '@/lib/firebase';
-import { collection, doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 
 export default function Page() {
-    const { toast } = useToast();
     const [value, setValue] = useState("");
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [teamName, setTeamName] = useState("");
     const [id, setId] = useState<string>("");
+
     const router = useRouter();
     const searchParams = useSearchParams()
+    const { toast } = useToast();
     useEffect(() => {
         (async () => {
             setLoading(true);
